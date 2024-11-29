@@ -20,3 +20,12 @@ ngrok http http://localhost:5000
 ```
 pip3 freeze > requirement.txt
 ```
+
+
+## トラブルシューティング
+
+
+アプリが起動していない場合、以下のようなエラーとなる。ラズパイでappを起動できているか確認する
+
+![アプリ起動していないエラー](doc/error-due-to-the-app.jpg)
+
