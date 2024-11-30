@@ -7,6 +7,12 @@ import json
 ERROR_LOG_FILE = "error_log.json"
 
 def init_routes(app, request_data_manager):
+    # ヘッダーを追加する関数
+    @app.after_request
+    def add_ngrok_header(response):
+        response.headers["ngrok-skip-browser-warning"] = "true"
+        return response
+
     @app.route("/")
     def index():
         return render_template("index.html")
