@@ -1,11 +1,29 @@
 from flask import request, render_template, jsonify
 from datetime import datetime
 from metric_collector import load_data_from_file
+import os 
+import json
+
+ERROR_LOG_FILE = "error_log.json"
 
 def init_routes(app, request_data_manager):
     @app.route("/")
     def index():
         return render_template("index.html")
+    
+    @app.route("/error-log")
+    def error_log():
+        # エラーログを読み込む
+        if os.path.exists(ERROR_LOG_FILE):
+            with open(ERROR_LOG_FILE, "r") as f:
+                try:
+                    error_log = json.load(f)
+                except json.JSONDecodeError:
+                    error_log = []
+        else:
+            error_log = []
+
+        return jsonify(error_log)
     
     # リクエスト履歴ページ
     @app.route("/request-history")

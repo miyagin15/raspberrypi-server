@@ -5,6 +5,11 @@ source venv/vin/activate
 pip3 install -r requirement.txt
 ```
 
+## パーミッション関連
+```
+sudo chown -R userName ./
+```
+
 ## サーバを起動する
 ```
 source venv/bin/activate
