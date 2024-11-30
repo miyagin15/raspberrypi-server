@@ -28,7 +28,7 @@ def save_data_to_file(data):
             json.dump(data, f)
         os.replace(temp_file, DATA_FILE)  # 安全に元のファイルを置き換える
     except (TypeError, ValueError) as e:
-        error_message = f"Error saving data to file: {e}"
+        error_message = "Error saving data to file: " + str(e)
         print(error_message)
         save_error_log(error_message)
 
@@ -68,7 +68,7 @@ def load_data_from_file():
                     return json.loads(content)  # JSONデータを読み込む
             except json.JSONDecodeError as e:
                 # JSONフォーマットが壊れている場合は空のリストを返す
-                error_message = f"JSONDecodeError: {e}. Resetting data to empty list."
+                error_message = "JSONDecodeError:"+ str(e)+ "Resetting data to empty list."
                 print(error_message)
                 save_error_log(error_message)
                 return []
