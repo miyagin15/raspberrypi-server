@@ -15,6 +15,23 @@
     <button onclick="toggleErrorLog()">表示</button>
     <div id="log-area" style="overflow: auto; white-space: pre-wrap; width: 95%; margin-top: 20px; border: 1px solid #ccc; padding: 10px; display: block;"></div>
     <script>
+        // 初回ロード時にリクエストを送信してヘッダーを追加
+        async function initialize() {
+            const url = window.location.href;
+            try {
+                await fetch(url, {
+                    method: "GET",
+                    headers: {
+                        "ngrok-skip-browser-warning": "true", // ヘッダーを追加
+                    },
+                });
+            } catch (error) {
+                console.error("Error during initialization:", error);
+            }
+        }
+
+        window.onload = initialize; // ページロード時に実行
+        
         let isLogVisible = false; // ログ表示状態を管理
         async function toggleErrorLog() {
             const logArea = document.getElementById("log-area");
