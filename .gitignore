@@ -1,5 +1,6 @@
 # log
 request_data.json
+metric.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

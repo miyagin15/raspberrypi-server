@@ -13,7 +13,8 @@ python3 app.py
 
 ## 外部公開する
 ```
-ngrok http http://localhost:5000
+ngrok http http://localhost:8080
+ngrok http --url=touched-nicely-roughy.ngrok-free.app 8080
 ```
 
 ## ライブラリを追加した時のコマンド
