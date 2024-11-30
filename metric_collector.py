@@ -9,7 +9,7 @@ import traceback
 DATA_FILE = "metric.json"
 
 # データ取得間隔 (秒)
-DATA_INTERVAL = 5
+DATA_INTERVAL = 60
 
 # 1分間に取得されるデータ数
 DATA_PER_MINUTE = 60 // DATA_INTERVAL

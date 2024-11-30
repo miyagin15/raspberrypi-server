@@ -11,9 +11,9 @@
     </div>
     <h1>Raspberry Pi Real-Time Monitoring</h1>
     <canvas id="lineChart" width="800" height="400"></canvas>
-    <h3>Error Log</h3>
+    <h1>Error Log</h1>
     <button onclick="toggleErrorLog()">表示</button>
-    <div id="log-area" style="margin-top: 20px; border: 1px solid #ccc; padding: 10px; display: block;"></div>
+    <div id="log-area" style="overflow: auto; white-space: pre-wrap; width: 95%; margin-top: 20px; border: 1px solid #ccc; padding: 10px; display: block;"></div>
     <script>
         let isLogVisible = false; // ログ表示状態を管理
         async function toggleErrorLog() {
