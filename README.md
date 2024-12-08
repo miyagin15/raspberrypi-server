@@ -17,14 +17,20 @@ python3 app.py
 ```
 
 ## 外部公開する
+
+ドメインはランダムで公開する場合
 ```
 ngrok http http://localhost:8080
+```
+
+ドメインを固定で公開する場合
+```
 ngrok http --url=touched-nicely-roughy.ngrok-free.app 8080
 ```
 
-## ライブラリを追加した時のコマンド
+## ライブラリを追加した時にrequirements.txtコマンド
 ```
-pip3 freeze > requirement.txt
+pip3 freeze > requirements.txt
 ```
 
 

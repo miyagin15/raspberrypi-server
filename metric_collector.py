@@ -20,6 +20,7 @@ DATA_PER_DAY = DATA_PER_HOUR * 24
 
 ERROR_LOG_FILE = "error_log.json"
 
+
 # データを保存する関数
 def save_data_to_file(data):
     temp_file = DATA_FILE + ".tmp"
@@ -32,12 +33,13 @@ def save_data_to_file(data):
         print(error_message)
         save_error_log(error_message)
 
+
 def save_error_log(error_message):
     # エラー情報を作成
     error_entry = {
         "timestamp": datetime.datetime.now().isoformat(),
         "error_message": error_message,
-        "traceback": traceback.format_exc()  # スタックトレースを記録
+        "traceback": traceback.format_exc(),  # スタックトレースを記録
     }
 
     # エラーログを読み込む
@@ -58,6 +60,7 @@ def save_error_log(error_message):
     with open(ERROR_LOG_FILE, "w") as f:
         json.dump(error_log, f, indent=4)
 
+
 # データを読み込む関数
 def load_data_from_file():
     if os.path.exists(DATA_FILE):
@@ -68,20 +71,23 @@ def load_data_from_file():
                     return json.loads(content)  # JSONデータを読み込む
             except json.JSONDecodeError as e:
                 # JSONフォーマットが壊れている場合は空のリストを返す
-                error_message = "JSONDecodeError:"+ str(e)+ "Resetting data to empty list."
+                error_message = (
+                    "JSONDecodeError:" + str(e) + "Resetting data to empty list."
+                )
                 print(error_message)
                 save_error_log(error_message)
                 return []
     return []  # ファイルが存在しない場合も空のリストを返す
 
+
 # ラズパイでデータを取得する関数
 def get_raspberry_pi_data():
     try:
-        with open('/sys/class/thermal/thermal_zone0/temp') as t:
+        with open("/sys/class/thermal/thermal_zone0/temp") as t:
             temp = int(t.read()) / 1000  # 温度取得
-        with open('/proc/stat') as r:
+        with open("/proc/stat") as r:
             stats = r.readlines()
-            stat = [line.strip().split() for line in stats if 'cpu' in line]
+            stat = [line.strip().split() for line in stats if "cpu" in line]
             total_time = sum(int(x) for x in stat[0][1:])
             idle_time = int(stat[0][4])
             busy_time = total_time - idle_time
@@ -96,6 +102,7 @@ def get_raspberry_pi_data():
         "temperature": temp,
         "cpu_usage": cpu_usage,
     }
+
 
 # データ収集を開始する関数
 def start_data_collection():

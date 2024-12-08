@@ -8,6 +8,7 @@ from metric_collector import start_data_collection
 MAX_RECORDS = 30
 DATA_FILE = "request_data.json"
 
+
 def create_app():
     app = Flask(__name__)
 
@@ -20,6 +21,7 @@ def create_app():
 
     return app
 
+
 if __name__ == "__main__":
     # Flaskアプリケーションを作成
     app = create_app()
@@ -28,4 +30,4 @@ if __name__ == "__main__":
     threading.Thread(target=start_data_collection, daemon=True).start()
 
     # アプリケーションを起動
-    app.run(debug=True, host='0.0.0.0', port=8080)
+    app.run(debug=True, host="0.0.0.0", port=8080)
